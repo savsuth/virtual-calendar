@@ -1,7 +1,5 @@
 # Virtual Calendar Application
 
-[![CI/CD Pipeline](https://github.com/samyak0510/Calendar/actions/workflows/ci.yml/badge.svg)](https://github.com/samyak0510/Calendar/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/samyak0510/Calendar/branch/main/graph/badge.svg)](https://codecov.io/gh/samyak0510/Calendar)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-11%2B-red.svg)](https://www.oracle.com/java/)
 [![Maven](https://img.shields.io/badge/Maven-3.6+-blue.svg)](https://maven.apache.org/)
