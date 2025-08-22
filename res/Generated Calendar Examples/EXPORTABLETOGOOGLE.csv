@@ -1,0 +1,9 @@
+Subject,Start Date,Start Time,End Date,End Time,AllDayEvent,Description,Location,Private
+ProjectKickoff,2025-06-10,09:30,2025-06-10,09:50,false,,,false
+Standup,2025-06-10,10:30,2025-06-10,10:45,false,,,false
+Retrospective,2025-06-10,11:00,2025-06-10,12:00,false,,,false
+DailyScrum,2025-05-01,08:00,2025-05-01,08:15,false,,,false
+ProductLaunch,2023-09-06,14:00,2023-09-06,16:00,false,,,false
+ProductLaunch,2023-09-13,14:00,2023-09-13,16:00,false,,,false
+ProductLaunch,2023-09-20,14:00,2023-09-20,16:00,false,,,false
+LaunchPrep,2023-09-10,14:00,2023-09-10,16:00,false,,,false

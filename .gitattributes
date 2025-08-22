@@ -1,0 +1,26 @@
+# Exclude generated documentation from GitHub language stats
+docs/* linguist-generated=true
+docs/**/* linguist-generated=true
+
+# Exclude test reports from GitHub language stats  
+res/pit-reports/* linguist-generated=true
+res/pit-reports/**/* linguist-generated=true
+
+# Exclude other generated files
+target/* linguist-generated=true
+target/**/* linguist-generated=true
+
+# Mark documentation as documentation (not code)
+*.html linguist-documentation=true
+*.css linguist-documentation=true
+*.js linguist-documentation=true
+
+# Ensure Java files are properly detected
+*.java linguist-language=Java
+
+# Exclude specific file types from diff
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary 

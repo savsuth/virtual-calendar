@@ -1,0 +1,3871 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>MultiCalendarService.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package model;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.time.DayOfWeek;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.time.LocalDate;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.time.LocalDateTime;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.time.ZoneId;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Set;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Provides calendar services that support managing multiple calendars and delegating event</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * operations.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class MultiCalendarService implements IMultiCalendarService {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  private ICalendarManager calendarManager;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * Constructs a MultiCalendarService with the given calendar manager.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   * @param calendarManager the calendar manager used to handle calendar contexts</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>   */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>  public MultiCalendarService(ICalendarManager calendarManager) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    this.calendarManager = calendarManager;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public boolean createCalendar(String name, String timezone) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    try {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>      ZoneId.of(timezone);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    } catch (Exception e) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>      throw new Exception(&#34;Invalid timezone: &#34; + timezone);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_34'/>
+34
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_34'>1</a>
+<span>
+
+1. createCalendar : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    if (calendarManager.getCalendar(name) != null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_35'/>
+35
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_35'>1</a>
+<span>
+
+1. createCalendar : replaced boolean return with true for model/MultiCalendarService::createCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext cal = new CalendarContext(name, timezone);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_38'/>
+38
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_38'>2</a>
+<span>
+
+1. createCalendar : replaced boolean return with true for model/MultiCalendarService::createCalendar &rarr; SURVIVED<br/>
+
+2. createCalendar : replaced boolean return with false for model/MultiCalendarService::createCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>    return calendarManager.addCalendar(cal);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public boolean editCalendar(String calendarName, String property, String newValue)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext cal = calendarManager.getCalendar(calendarName);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_45'/>
+45
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_45'>1</a>
+<span>
+
+1. editCalendar : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    if (cal == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_46'/>
+46
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_46'>1</a>
+<span>
+
+1. editCalendar : replaced boolean return with true for model/MultiCalendarService::editCalendar &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>      return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_48'/>
+48
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_48'>1</a>
+<span>
+
+1. editCalendar : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    if (property.equalsIgnoreCase(&#34;name&#34;)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_49'/>
+49
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_49'>1</a>
+<span>
+
+1. editCalendar : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      if (calendarManager.getCalendar(newValue) != null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_50'/>
+50
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_50'>1</a>
+<span>
+
+1. editCalendar : replaced boolean return with true for model/MultiCalendarService::editCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_52'/>
+52
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_52'>1</a>
+<span>
+
+1. editCalendar : removed call to model/ICalendarManager::removeCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      calendarManager.removeCalendar(calendarName);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_53'/>
+53
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_53'>1</a>
+<span>
+
+1. editCalendar : removed call to model/ICalendarContext::setName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      cal.setName(newValue);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>      calendarManager.addCalendar(cal);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_55'/>
+55
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_55'>1</a>
+<span>
+
+1. editCalendar : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      if (calendarManager.getCurrentCalendar() != null &#38;&#38;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_56'/>
+56
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_56'>1</a>
+<span>
+
+1. editCalendar : negated conditional &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>          calendarManager.getCurrentCalendar().getName().equals(calendarName)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_57'/>
+57
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_57'>1</a>
+<span>
+
+1. editCalendar : removed call to model/ICalendarManager::setCurrentCalendar &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        calendarManager.setCurrentCalendar(newValue);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_59'/>
+59
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_59'>1</a>
+<span>
+
+1. editCalendar : replaced boolean return with false for model/MultiCalendarService::editCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      return true;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_60'/>
+60
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_60'>1</a>
+<span>
+
+1. editCalendar : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    } else if (property.equalsIgnoreCase(&#34;timezone&#34;)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>      ZoneId oldZone = cal.getTimezone();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      ZoneId newZone;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      try {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        newZone = ZoneId.of(newValue);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>      } catch (Exception e) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        throw new Exception(&#34;Invalid timezone: &#34; + newValue);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>      }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_68'/>
+68
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_68'>1</a>
+<span>
+
+1. editCalendar : removed call to model/ICalendarContext::setTimezone &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      cal.setTimezone(newValue);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_69'/>
+69
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_69'>1</a>
+<span>
+
+1. editCalendar : removed call to model/EventMigrationHelper::migrateEvents &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      EventMigrationHelper.migrateEvents(cal, oldZone, newZone);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_70'/>
+70
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_70'>1</a>
+<span>
+
+1. editCalendar : replaced boolean return with false for model/MultiCalendarService::editCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      return true;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_72'/>
+72
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_72'>1</a>
+<span>
+
+1. editCalendar : replaced boolean return with true for model/MultiCalendarService::editCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public boolean useCalendar(String calendarName) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext cal = calendarManager.getCalendar(calendarName);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_78'/>
+78
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_78'>1</a>
+<span>
+
+1. useCalendar : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    if (cal == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_79'/>
+79
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_79'>1</a>
+<span>
+
+1. useCalendar : replaced boolean return with true for model/MultiCalendarService::useCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_81'/>
+81
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_81'>1</a>
+<span>
+
+1. useCalendar : removed call to model/ICalendarManager::setCurrentCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    calendarManager.setCurrentCalendar(calendarName);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_82'/>
+82
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_82'>1</a>
+<span>
+
+1. useCalendar : replaced boolean return with false for model/MultiCalendarService::useCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return true;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  private ICalendarContext getCurrentCalendar() throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext cal = calendarManager.getCurrentCalendar();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_87'/>
+87
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_87'>1</a>
+<span>
+
+1. getCurrentCalendar : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    if (cal == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>      throw new Exception(&#34;No active calendar set.&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_90'/>
+90
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_90'>1</a>
+<span>
+
+1. getCurrentCalendar : replaced return value with null for model/MultiCalendarService::getCurrentCalendar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return cal;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_92'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public void addSingleEvent(String subject, LocalDateTime start, LocalDateTime end,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_95'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      String description, String location, boolean isPublic,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_96'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      boolean autoDecline) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    getCurrentCalendar().getCalendarService()</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_98'/>
+98
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_98'>1</a>
+<span>
+
+1. addSingleEvent : removed call to model/ICalendarService::addSingleEvent &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        .addSingleEvent(subject, start, end, description, location, isPublic, true);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_99'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_100'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_102'/>
+102
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_102'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public void addRecurringEvent(String subject, LocalDateTime start, LocalDateTime end,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      String description, String location, boolean isPublic,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_104'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      Set&#60;DayOfWeek&#62; recurrenceDays,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_105'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      int occurrenceCount, LocalDate recurrenceEndDate,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_106'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      boolean autoDecline) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_107'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    getCurrentCalendar().getCalendarService()</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_108'/>
+108
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_108'>1</a>
+<span>
+
+1. addRecurringEvent : removed call to model/ICalendarService::addRecurringEvent &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        .addRecurringEvent(subject, start, end, description, location,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_109'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            isPublic, recurrenceDays, occurrenceCount, recurrenceEndDate, true);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_110'/>
+110
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_110'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public List&#60;Event&#62; getEventsOn(LocalDate date) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_114'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    try {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_115'/>
+115
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_115'>1</a>
+<span>
+
+1. getEventsOn : replaced return value with Collections.emptyList for model/MultiCalendarService::getEventsOn &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      return getCurrentCalendar().getCalendarService().getEventsOn(date);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_116'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    } catch (Exception e) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_117'/>
+117
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_117'>1</a>
+<span>
+
+1. getEventsOn : replaced return value with Collections.emptyList for model/MultiCalendarService::getEventsOn &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      return null;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_118'/>
+118
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_118'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_119'/>
+119
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_119'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_120'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_122'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public List&#60;Event&#62; getAllEvents() {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_123'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    try {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_124'/>
+124
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_124'>1</a>
+<span>
+
+1. getAllEvents : replaced return value with Collections.emptyList for model/MultiCalendarService::getAllEvents &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      return getCurrentCalendar().getCalendarService().getAllEvents();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_125'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    } catch (Exception e) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_126'/>
+126
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_126'>1</a>
+<span>
+
+1. getAllEvents : replaced return value with Collections.emptyList for model/MultiCalendarService::getAllEvents &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      return null;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_127'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_128'/>
+128
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_128'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_129'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_130'/>
+130
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_130'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_131'/>
+131
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_131'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public boolean isBusyAt(LocalDateTime dateTime) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_132'/>
+132
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_132'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    try {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_133'/>
+133
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_133'>2</a>
+<span>
+
+1. isBusyAt : replaced boolean return with true for model/MultiCalendarService::isBusyAt &rarr; SURVIVED<br/>
+
+2. isBusyAt : replaced boolean return with false for model/MultiCalendarService::isBusyAt &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>      return getCurrentCalendar().getCalendarService().isBusyAt(dateTime);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_134'/>
+134
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_134'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    } catch (Exception e) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_135'/>
+135
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_135'>1</a>
+<span>
+
+1. isBusyAt : replaced boolean return with true for model/MultiCalendarService::isBusyAt &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>      return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_136'/>
+136
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_136'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_137'/>
+137
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_137'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_138'/>
+138
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_138'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_139'/>
+139
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_139'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_140'/>
+140
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_140'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public void editEvent(String subject, LocalDateTime from, String property,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_141'/>
+141
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_141'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      String newValue, EditMode mode) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_142'/>
+142
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_142'>1</a>
+<span>
+
+1. editEvent : removed call to model/ICalendarService::editEvent &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>    getCurrentCalendar().getCalendarService().editEvent(subject, from, property, newValue, mode);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_143'/>
+143
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_143'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_144'/>
+144
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_144'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_145'/>
+145
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_145'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_146'/>
+146
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_146'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public String exportTo(String format, String path) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_147'/>
+147
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_147'>1</a>
+<span>
+
+1. exportTo : replaced return value with &#34;&#34; for model/MultiCalendarService::exportTo &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>    return getCurrentCalendar().getCalendarService().exportTo(format, path);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_148'/>
+148
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_148'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_149'/>
+149
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_149'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_150'/>
+150
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_150'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_151'/>
+151
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_151'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public String importFrom(String format, String path) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_152'/>
+152
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_152'>1</a>
+<span>
+
+1. importFrom : replaced return value with &#34;&#34; for model/MultiCalendarService::importFrom &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return getCurrentCalendar().getCalendarService().importFrom(format, path);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_153'/>
+153
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_153'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_154'/>
+154
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_154'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_155'/>
+155
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_155'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_156'/>
+156
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_156'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public String printEventsOn(LocalDate date) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_157'/>
+157
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_157'>1</a>
+<span>
+
+1. printEventsOn : replaced return value with &#34;&#34; for model/MultiCalendarService::printEventsOn &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return getCurrentCalendar().getCalendarService().printEventsOn(date);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_158'/>
+158
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_158'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_159'/>
+159
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_159'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_160'/>
+160
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_160'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_161'/>
+161
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_161'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public String printEventsRange(LocalDateTime start, LocalDateTime end) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_162'/>
+162
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_162'>1</a>
+<span>
+
+1. printEventsRange : replaced return value with &#34;&#34; for model/MultiCalendarService::printEventsRange &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>    return getCurrentCalendar().getCalendarService().printEventsRange(start, end);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_163'/>
+163
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_163'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_164'/>
+164
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_164'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_165'/>
+165
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_165'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_166'/>
+166
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_166'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public String copyEvent(String eventName, LocalDateTime sourceStart,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_167'/>
+167
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_167'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      String targetCalendarName, LocalDateTime targetStart) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_168'/>
+168
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_168'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext sourceCal = getCurrentCalendar();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_169'/>
+169
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_169'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext targetCal = calendarManager.getCalendar(targetCalendarName);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_170'/>
+170
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_170'>1</a>
+<span>
+
+1. copyEvent : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    if (targetCal == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_171'/>
+171
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_171'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>      throw new Exception(&#34;Target calendar not found: &#34; + targetCalendarName);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_172'/>
+172
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_172'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_173'/>
+173
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_173'>1</a>
+<span>
+
+1. copyEvent : replaced return value with &#34;&#34; for model/MultiCalendarService::copyEvent &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return EventCopyHelper.copyEvent(sourceCal, targetCal, eventName, sourceStart, targetStart);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_174'/>
+174
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_174'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_175'/>
+175
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_175'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_176'/>
+176
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_176'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_177'/>
+177
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_177'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public String copyEventsOn(LocalDate sourceDate, String targetCalendarName,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_178'/>
+178
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_178'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      LocalDate targetDate) throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_179'/>
+179
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_179'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext sourceCal = getCurrentCalendar();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_180'/>
+180
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_180'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext targetCal = calendarManager.getCalendar(targetCalendarName);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_181'/>
+181
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_181'>1</a>
+<span>
+
+1. copyEventsOn : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    if (targetCal == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_182'/>
+182
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_182'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>      throw new Exception(&#34;Target calendar not found: &#34; + targetCalendarName);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_183'/>
+183
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_183'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_184'/>
+184
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_184'>1</a>
+<span>
+
+1. copyEventsOn : replaced return value with &#34;&#34; for model/MultiCalendarService::copyEventsOn &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return EventCopyHelper.copyEventsOnDate(sourceCal, targetCal, sourceDate, targetDate);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_185'/>
+185
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_185'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_186'/>
+186
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_186'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_187'/>
+187
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_187'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_188'/>
+188
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_188'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public String copyEventsBetween(LocalDate sourceStartDate, LocalDate sourceEndDate,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_189'/>
+189
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_189'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      String targetCalendarName, LocalDate targetStartDate)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_190'/>
+190
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_190'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>      throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_191'/>
+191
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_191'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext sourceCal = getCurrentCalendar();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_192'/>
+192
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_192'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext targetCal = calendarManager.getCalendar(targetCalendarName);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_193'/>
+193
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_193'>1</a>
+<span>
+
+1. copyEventsBetween : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    if (targetCal == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_194'/>
+194
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_194'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>      throw new Exception(&#34;Target calendar not found: &#34; + targetCalendarName);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_195'/>
+195
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_195'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_196'/>
+196
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_196'>1</a>
+<span>
+
+1. copyEventsBetween : replaced return value with &#34;&#34; for model/MultiCalendarService::copyEventsBetween &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return EventCopyHelper.copyEventsBetweenDates(sourceCal, targetCal, sourceStartDate,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_197'/>
+197
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_197'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        sourceEndDate, targetStartDate);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_198'/>
+198
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_198'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_199'/>
+199
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_199'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_200'/>
+200
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_200'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_201'/>
+201
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_201'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  public String[] getCurrentCalendarNameAndZone() throws Exception {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_202'/>
+202
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_202'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    ICalendarContext currentCal = getCurrentCalendar();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_203'/>
+203
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_203'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    String name = currentCal.getName();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_204'/>
+204
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_204'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    String timezone = currentCal.getTimezone().toString();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_205'/>
+205
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_205'>1</a>
+<span>
+
+1. getCurrentCalendarNameAndZone : replaced return value with null for model/MultiCalendarService::getCurrentCalendarNameAndZone &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>    return new String[]{name, timezone};</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_206'/>
+206
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_206'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>  }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@55abf66a_207'/>
+207
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_207'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_34'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testCreateCalendarSuccess(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_35'>35</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_35'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testCreateCalendarDuplicate(model.MultiCalendarServiceTest)</span></span> replaced boolean return with true for model/MultiCalendarService::createCalendar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_38'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testCreateCalendarSuccess(model.MultiCalendarServiceTest)</span></span> replaced boolean return with false for model/MultiCalendarService::createCalendar &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createCalendar<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for model/MultiCalendarService::createCalendar &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=createCalendar,-methodDesc=(Ljava/lang/String;Ljava/lang/String;)Z],-indexes=[48],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=createCalendar,-methodDesc=(Ljava/lang/String;Ljava/lang/String;)Z],-indexes=[48],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=createCalendar,-methodDesc=(Ljava/lang/String;Ljava/lang/String;)Z],-indexes=[48],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>model.MultiCalendarServiceTest.testCreateCalendarSuccess(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testNewCalendarCreation(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testEditCalendarInvalidProperty(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testUseCalendar(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testCreateCalendarDuplicate(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testCreateCalendarActuallyAddsToManager(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testCopyEventsOnNonExistentTargetCalendar(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testDuplicateCalendar(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testNewCalendarCreation2(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testEditCalendarNameRemovesOldCalendar(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testCopyEventNonExistentTargetCalendar(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.addRecurringEventWithConflict3(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testAddSingleEventActuallyCreatesEvent(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.addConflictingSingleEvent(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testIsBusyAtWithConflictingEvent(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testEditCalendarName(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testEditCalendarTimezoneMigratesEvents(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.addRecurringEventWithConflict2(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.addRecurringEventWithConflict(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testPrintEventsAfterTimezoneChange(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testCopyEventsBetweenWithDifferentTimezones(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testCopyEventsBetweenWithSameTimezone(model.MultiCalendarServiceTest)</li> <li>model.MultiCalendarServiceTest.testCopySingleEventWithSameTimezone(model.MultiCalendarServiceTest)</li> <li>controller.CreateCalendarCommandTest.testDuplicateCalendarFails(controller.CreateCalendarCommandTest)</li> <li>controller.CreateCalendarCommandTest.testCreateValidCalendar(controller.CreateCalendarCommandTest)</li> <li>controller.GUICreateCalendarParserTest.parseDuplicateCreation(controller.GUICreateCalendarParserTest)</li> <li>controller.GUICreateCalendarParserTest.parseValidCreation(controller.GUICreateCalendarParserTest)</li> <li>controller.GUIPrintEventsParserTest.testParseNullDate(controller.GUIPrintEventsParserTest)</li> <li>controller.GUIImportCSVCalendarParserTest.testNullFileName(controller.GUIImportCSVCalendarParserTest)</li> <li>controller.GUICreateRecurringEventParserTest.testErrorWithEmptySubject(controller.GUICreateRecurringEventParserTest)</li> <li>controller.GUIUseCalendarParserTest.testUseNonExistingCalendar(controller.GUIUseCalendarParserTest)</li> <li>controller.GUICreateSingleEventParserTest.testEmptySubject(controller.GUICreateSingleEventParserTest)</li> <li>controller.GUIImportCSVCalendarParserTest.testEmptyFileName(controller.GUIImportCSVCalendarParserTest)</li> <li>controller.GUIEditCalendarParserTest.testUnknownPropertyEdit(controller.GUIEditCalendarParserTest)</li> <li>controller.GUICreateRecurringEventParserTest.testErrorWithEmptyStart(controller.GUICreateRecurringEventParserTest)</li> <li>controller.GUIEditCalendarParserTest.testEmptyCalendarName(controller.GUIEditCalendarParserTest)</li> <li>controller.GUICreateSingleEventParserTest.testEmptyStart(controller.GUICreateSingleEventParserTest)</li> <li>controller.GUIEditCalendarParserTest.testEmptyNewValue(controller.GUIEditCalendarParserTest)</li> <li>controller.GUIUseCalendarParserTest.testUseExistingCalendar(controller.GUIUseCalendarParserTest)</li> <li>controller.GUICreateRecurringEventParserTest.testErrorWithEmptyRecurrenceDays(controller.GUICreateRecurringEventParserTest)</li> <li>controller.GUIEditCalendarParserTest.testEditWithDuplicateName(controller.GUIEditCalendarParserTest)</li> <li>controller.GUIControllerTest.useCalendar(controller.GUIControllerTest)</li> <li>controller.GUICreateSingleEventParserTest.testInvalidStartDate(controller.GUICreateSingleEventParserTest)</li> <li>controller.GUIControllerTest.start(controller.GUIControllerTest)</li> <li>controller.GUIPrintEventsParserTest.testParseValidDateWithNoEvents(controller.GUIPrintEventsParserTest)</li> <li>controller.GUIEditCalendarParserTest.testEmptyProperty(controller.GUIEditCalendarParserTest)</li> <li>controller.GUIEditCalendarParserTest.testValidNameEdit(controller.GUIEditCalendarParserTest)</li> <li>model.CSVImporterTest.importEmptyFile(model.CSVImporterTest)</li> <li>controller.GUIEditEventParserTest.testEmptySubject(controller.GUIEditEventParserTest)</li> <li>controller.GUIControllerTest.createCalendar(controller.GUIControllerTest)</li> <li>controller.GUIEditCalendarParserTest.testValidTimezoneEdit(controller.GUIEditCalendarParserTest)</li> <li>controller.GUIControllerTest.exportWithUnsupportedFormat(controller.GUIControllerTest)</li> <li>controller.GUIEditEventParserTest.testEmptyProperty(controller.GUIEditEventParserTest)</li> <li>controller.GUIControllerTest.getCurrentCalendarNameAndZone(controller.GUIControllerTest)</li> <li>controller.GUIImportCSVCalendarParserTest.testInvalid2(controller.GUIImportCSVCalendarParserTest)</li> <li>controller.GUIControllerTest.editCalendarInvalidProperty(controller.GUIControllerTest)</li> <li>controller.GUICreateSingleEventParserTest.testDefaultEndWhenEmpty(controller.GUICreateSingleEventParserTest)</li> <li>model.CSVImporterTest.importInvalidFieldCount(model.CSVImporterTest)</li> <li>controller.GUIEditEventParserTest.testEmptyNewValue(controller.GUIEditEventParserTest)</li> <li>controller.GUIEditEventParserTest.testMissingStartTimeForSingleMode(controller.GUIEditEventParserTest)</li> <li>controller.TextBasedControllerTest.testInvalidArguments(controller.TextBasedControllerTest)</li> <li>controller.GUICreateRecurringEventParserTest.testErrorWhenNoOccurrenceCountOrRecurrenceEndProvided(controller.GUICreateRecurringEventParserTest)</li> <li>controller.GUICreateSingleEventParserTest.testValidSingleEventCreation(controller.GUICreateSingleEventParserTest)</li> <li>controller.GUICreateRecurringEventParserTest.testErrorWithNonNumericOccurrenceCount(controller.GUICreateRecurringEventParserTest)</li> <li>controller.GUIEditEventParserTest.testInvalidEditMode(controller.GUIEditEventParserTest)</li> <li>controller.TextBasedControllerTest.testHeadlessNoCommandFile(controller.TextBasedControllerTest)</li> <li>controller.ImportCalendarCommandTest.testImportFileNotFound(controller.ImportCalendarCommandTest)</li> <li>model.CSVImporterTest.importMixedData(model.CSVImporterTest)</li> <li>model.CSVImporterTest.importData(model.CSVImporterTest)</li> <li>controller.GUIEditEventParserTest.testInvalidStartTimeFormat(controller.GUIEditEventParserTest)</li> <li>controller.GUICreateRecurringEventParserTest.testValidRecurringCreationWithRecurrenceEndDate(controller.GUICreateRecurringEventParserTest)</li> <li>controller.GUICreateRecurringEventParserTest.testValidRecurringCreationWithOccurrenceCount(controller.GUICreateRecurringEventParserTest)</li> <li>model.CSVImporterTest.importInvalidDateFormat(model.CSVImporterTest)</li> <li>controller.GUIEditEventParserTest.testValidEditEventSingleMode(controller.GUIEditEventParserTest)</li> <li>controller.GUIControllerTest.createSingleEvent(controller.GUIControllerTest)</li> <li>controller.GUICSVExportCalendarParserTest.testExportWithoutExtension(controller.GUICSVExportCalendarParserTest)</li> <li>controller.TextBasedControllerTest.testHeadlessFileNotFound(controller.TextBasedControllerTest)</li> <li>controller.GUIControllerTest.editCalendar(controller.GUIControllerTest)</li> <li>controller.TextBasedControllerTest.testInteractiveMode(controller.TextBasedControllerTest)</li> <li>controller.GUIImportCSVCalendarParserTest.testInvalid3(controller.GUIImportCSVCalendarParserTest)</li> <li>controller.ImportCalendarCommandTest.testSuccessfulImport(controller.ImportCalendarCommandTest)</li> <li>controller.GUIImportCSVCalendarParserTest.testValidCSVImport(controller.GUIImportCSVCalendarParserTest)</li> <li>controller.GUIControllerTest.createRecurringEvent(controller.GUIControllerTest)</li> <li>controller.GUICSVExportCalendarParserTest.testExportWithCsvExtension(controller.GUICSVExportCalendarParserTest)</li> <li>controller.GUIControllerTest.printEventsOn(controller.GUIControllerTest)</li> <li>controller.GUIControllerTest.editEvent(controller.GUIControllerTest)</li> <li>controller.TextBasedControllerTest.testHeadlessWithCommands(controller.TextBasedControllerTest)</li> <li>controller.GUIControllerTest.exportCalendar(controller.GUIControllerTest)</li> <li>controller.GUIControllerTest.importCalendar(controller.GUIControllerTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_45'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarNameRemovesOldCalendar(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_46'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for model/MultiCalendarService::editCalendar &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_48'>48</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_48'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarInvalidProperty(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_49'>49</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_49'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarNameRemovesOldCalendar(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_50'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testDuplicateCalendar(model.MultiCalendarServiceTest)</span></span> replaced boolean return with true for model/MultiCalendarService::editCalendar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_52'>52</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_52'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarNameRemovesOldCalendar(model.MultiCalendarServiceTest)</span></span> removed call to model/ICalendarManager::removeCalendar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_53'>53</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_53'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarNameRemovesOldCalendar(model.MultiCalendarServiceTest)</span></span> removed call to model/ICalendarContext::setName &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_55'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarNameRemovesOldCalendar(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_56'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=editCalendar,-methodDesc=(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z],-indexes=[67],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=editCalendar,-methodDesc=(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z],-indexes=[67],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=editCalendar,-methodDesc=(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z],-indexes=[67],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>controller.GUIControllerTest.editCalendar(controller.GUIControllerTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_57'>57</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_57'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>none</span></span> removed call to model/ICalendarManager::setCurrentCalendar &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_59'>59</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_59'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testDuplicateCalendar(model.MultiCalendarServiceTest)</span></span> replaced boolean return with false for model/MultiCalendarService::editCalendar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_60'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarInvalidProperty(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_68'>68</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_68'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarName(model.MultiCalendarServiceTest)</span></span> removed call to model/ICalendarContext::setTimezone &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_69'>69</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_69'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarTimezoneMigratesEvents(model.MultiCalendarServiceTest)</span></span> removed call to model/EventMigrationHelper::migrateEvents &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_70'>70</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_70'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarTimezoneMigratesEvents(model.MultiCalendarServiceTest)</span></span> replaced boolean return with false for model/MultiCalendarService::editCalendar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_72'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testEditCalendarInvalidProperty(model.MultiCalendarServiceTest)</span></span> replaced boolean return with true for model/MultiCalendarService::editCalendar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_78'>78</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_78'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>useCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testUseCalendarNonexistent(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_79'>79</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_79'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>useCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testUseCalendarNonexistent(model.MultiCalendarServiceTest)</span></span> replaced boolean return with true for model/MultiCalendarService::useCalendar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_81'>81</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_81'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>useCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testNewCalendarCreation2(model.MultiCalendarServiceTest)</span></span> removed call to model/ICalendarManager::setCurrentCalendar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_82'>82</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_82'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>useCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testUseCalendar(model.MultiCalendarServiceTest)</span></span> replaced boolean return with false for model/MultiCalendarService::useCalendar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_87'>87</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_87'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCurrentCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testNewCalendarCreation2(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_90'>90</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_90'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCurrentCalendar<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testNewCalendarCreation2(model.MultiCalendarServiceTest)</span></span> replaced return value with null for model/MultiCalendarService::getCurrentCalendar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_98'>98</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_98'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addSingleEvent<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testAddSingleEventActuallyCreatesEvent(model.MultiCalendarServiceTest)</span></span> removed call to model/ICalendarService::addSingleEvent &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_108'>108</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_108'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>addRecurringEvent<br/><b>Killed by : </b>model.MultiCalendarServiceTest.addRecurringEventWithConflict2(model.MultiCalendarServiceTest)</span></span> removed call to model/ICalendarService::addRecurringEvent &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_115'>115</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_115'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEventsOn<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testCopySingleEventWithSameTimezone(model.MultiCalendarServiceTest)</span></span> replaced return value with Collections.emptyList for model/MultiCalendarService::getEventsOn &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_117'>117</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_117'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEventsOn<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testGetEventsOnAndGetAllEventsWhenNoActiveCalendar(model.MultiCalendarServiceTest)</span></span> replaced return value with Collections.emptyList for model/MultiCalendarService::getEventsOn &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_124'>124</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_124'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getAllEvents<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testAddSingleEventActuallyCreatesEvent(model.MultiCalendarServiceTest)</span></span> replaced return value with Collections.emptyList for model/MultiCalendarService::getAllEvents &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_126'>126</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_126'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getAllEvents<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testGetEventsOnAndGetAllEventsWhenNoActiveCalendar(model.MultiCalendarServiceTest)</span></span> replaced return value with Collections.emptyList for model/MultiCalendarService::getAllEvents &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_133'>133</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_133'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isBusyAt<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testIsBusyAtWithConflictingEvent(model.MultiCalendarServiceTest)</span></span> replaced boolean return with false for model/MultiCalendarService::isBusyAt &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isBusyAt<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for model/MultiCalendarService::isBusyAt &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=isBusyAt,-methodDesc=(Ljava/time/LocalDateTime;)Z],-indexes=[9],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=isBusyAt,-methodDesc=(Ljava/time/LocalDateTime;)Z],-indexes=[9],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=isBusyAt,-methodDesc=(Ljava/time/LocalDateTime;)Z],-indexes=[9],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>model.MultiCalendarServiceTest.testIsBusyAtWithConflictingEvent(model.MultiCalendarServiceTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_135'>135</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_135'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isBusyAt<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testIsBusyAtWhenEmpty(model.MultiCalendarServiceTest)</span></span> replaced boolean return with true for model/MultiCalendarService::isBusyAt &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_142'>142</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_142'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>editEvent<br/><b>Killed by : </b>none</span></span> removed call to model/ICalendarService::editEvent &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=editEvent,-methodDesc=(Ljava/lang/String;Ljava/time/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Lmodel/ICalendarService$EditMode;)V],-indexes=[11],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=editEvent,-methodDesc=(Ljava/lang/String;Ljava/time/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Lmodel/ICalendarService$EditMode;)V],-indexes=[11],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=editEvent,-methodDesc=(Ljava/lang/String;Ljava/time/LocalDateTime;Ljava/lang/String;Ljava/lang/String;Lmodel/ICalendarService$EditMode;)V],-indexes=[11],-mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>controller.GUIEditEventParserTest.testValidEditEventSingleMode(controller.GUIEditEventParserTest)</li> <li>controller.GUIControllerTest.editEvent(controller.GUIControllerTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_147'>147</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_147'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>exportTo<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for model/MultiCalendarService::exportTo &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=exportTo,-methodDesc=(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;],-indexes=[9],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=exportTo,-methodDesc=(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;],-indexes=[9],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=model.MultiCalendarService,-method=exportTo,-methodDesc=(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;],-indexes=[9],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>controller.GUICSVExportCalendarParserTest.testExportWithoutExtension(controller.GUICSVExportCalendarParserTest)</li> <li>controller.GUICSVExportCalendarParserTest.testExportWithCsvExtension(controller.GUICSVExportCalendarParserTest)</li> <li>controller.GUIControllerTest.exportCalendar(controller.GUIControllerTest)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_152'>152</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_152'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>importFrom<br/><b>Killed by : </b>controller.ImportCalendarCommandTest.testSuccessfulImport(controller.ImportCalendarCommandTest)</span></span> replaced return value with &#34;&#34; for model/MultiCalendarService::importFrom &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_157'>157</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_157'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>printEventsOn<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testPrintEventsAfterTimezoneChange(model.MultiCalendarServiceTest)</span></span> replaced return value with &#34;&#34; for model/MultiCalendarService::printEventsOn &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_162'>162</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_162'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>printEventsRange<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for model/MultiCalendarService::printEventsRange &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_170'>170</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_170'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>copyEvent<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testCopySingleEventWithSameTimezone(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_173'>173</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_173'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>copyEvent<br/><b>Killed by : </b>controller.CopyEventCommandTest.testExecuteCopiesEvent(controller.CopyEventCommandTest)</span></span> replaced return value with &#34;&#34; for model/MultiCalendarService::copyEvent &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_181'>181</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_181'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>copyEventsOn<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testCopyEventsOnNonExistentTargetCalendar(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_184'>184</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_184'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>copyEventsOn<br/><b>Killed by : </b>controller.CopyEventsOnCommandTest.testCopyEventsOnDate(controller.CopyEventsOnCommandTest)</span></span> replaced return value with &#34;&#34; for model/MultiCalendarService::copyEventsOn &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_193'>193</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_193'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>copyEventsBetween<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testCopyEventsBetweenWithSameTimezone(model.MultiCalendarServiceTest)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_196'>196</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_196'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>copyEventsBetween<br/><b>Killed by : </b>controller.CopyEventsBetweenCommandTest.testExecuteNoEventsInRange(controller.CopyEventsBetweenCommandTest)</span></span> replaced return value with &#34;&#34; for model/MultiCalendarService::copyEventsBetween &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@55abf66a_205'>205</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@55abf66a_205'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCurrentCalendarNameAndZone<br/><b>Killed by : </b>model.MultiCalendarServiceTest.testNewCalendarCreation2(model.MultiCalendarServiceTest)</span></span> replaced return value with null for model/MultiCalendarService::getCurrentCalendarNameAndZone &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+
+<li class='mutator'>EMPTY_RETURNS</li>
+
+<li class='mutator'>FALSE_RETURNS</li>
+
+<li class='mutator'>INCREMENTS</li>
+
+<li class='mutator'>INVERT_NEGS</li>
+
+<li class='mutator'>MATH</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+
+<li class='mutator'>NULL_RETURNS</li>
+
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+
+<li class='mutator'>TRUE_RETURNS</li>
+
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>controller.GUICSVExportCalendarParserTest.testExportWithoutExtension(controller.GUICSVExportCalendarParserTest) (4 ms)</li><li>controller.GUICSVExportCalendarParserTest.testExportWithCsvExtension(controller.GUICSVExportCalendarParserTest) (8 ms)</li><li>controller.GUIControllerTest.exportCalendar(controller.GUIControllerTest) (5 ms)</li><li>model.MultiCalendarServiceTest.testUseCalendar(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testCopyEventsOnNonExistentTargetCalendar(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testNewCalendarCreation2(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testCopyEventNonExistentTargetCalendar(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.addRecurringEventWithConflict3(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testAddSingleEventActuallyCreatesEvent(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.addConflictingSingleEvent(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testIsBusyAtWithConflictingEvent(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testEditCalendarName(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testEditCalendarTimezoneMigratesEvents(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.addRecurringEventWithConflict2(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.addRecurringEventWithConflict(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testPrintEventsAfterTimezoneChange(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testCopyEventsBetweenWithDifferentTimezones(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testCopyEventsBetweenWithSameTimezone(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testCopySingleEventWithSameTimezone(model.MultiCalendarServiceTest) (0 ms)</li><li>controller.GUIPrintEventsParserTest.testParseNullDate(controller.GUIPrintEventsParserTest) (0 ms)</li><li>controller.GUIImportCSVCalendarParserTest.testNullFileName(controller.GUIImportCSVCalendarParserTest) (0 ms)</li><li>controller.UseCalendarCommandTest.testUseValidCalendar(controller.UseCalendarCommandTest) (0 ms)</li><li>controller.GUICreateRecurringEventParserTest.testErrorWithEmptySubject(controller.GUICreateRecurringEventParserTest) (0 ms)</li><li>controller.GUIUseCalendarParserTest.testUseNonExistingCalendar(controller.GUIUseCalendarParserTest) (0 ms)</li><li>controller.GUICreateSingleEventParserTest.testEmptySubject(controller.GUICreateSingleEventParserTest) (1 ms)</li><li>controller.GUIImportCSVCalendarParserTest.testEmptyFileName(controller.GUIImportCSVCalendarParserTest) (1 ms)</li><li>controller.GUIEditCalendarParserTest.testUnknownPropertyEdit(controller.GUIEditCalendarParserTest) (0 ms)</li><li>controller.GUICreateRecurringEventParserTest.testErrorWithEmptyStart(controller.GUICreateRecurringEventParserTest) (1 ms)</li><li>controller.GUIEditCalendarParserTest.testEmptyCalendarName(controller.GUIEditCalendarParserTest) (1 ms)</li><li>controller.GUICreateSingleEventParserTest.testEmptyStart(controller.GUICreateSingleEventParserTest) (1 ms)</li><li>controller.GUIEditCalendarParserTest.testEmptyNewValue(controller.GUIEditCalendarParserTest) (1 ms)</li><li>controller.GUIUseCalendarParserTest.testUseExistingCalendar(controller.GUIUseCalendarParserTest) (1 ms)</li><li>controller.GUICreateRecurringEventParserTest.testErrorWithEmptyRecurrenceDays(controller.GUICreateRecurringEventParserTest) (1 ms)</li><li>controller.GUIEditCalendarParserTest.testEditWithDuplicateName(controller.GUIEditCalendarParserTest) (0 ms)</li><li>controller.GUIControllerTest.useCalendar(controller.GUIControllerTest) (0 ms)</li><li>controller.GUICreateSingleEventParserTest.testInvalidStartDate(controller.GUICreateSingleEventParserTest) (1 ms)</li><li>controller.GUIControllerTest.start(controller.GUIControllerTest) (0 ms)</li><li>controller.GUIPrintEventsParserTest.testParseValidDateWithNoEvents(controller.GUIPrintEventsParserTest) (0 ms)</li><li>controller.GUIEditCalendarParserTest.testEmptyProperty(controller.GUIEditCalendarParserTest) (2 ms)</li><li>controller.GUIEditCalendarParserTest.testValidNameEdit(controller.GUIEditCalendarParserTest) (0 ms)</li><li>model.CSVImporterTest.importEmptyFile(model.CSVImporterTest) (3 ms)</li><li>controller.GUIEditEventParserTest.testEmptySubject(controller.GUIEditEventParserTest) (1 ms)</li><li>controller.GUIControllerTest.createCalendar(controller.GUIControllerTest) (2 ms)</li><li>controller.GUIEditCalendarParserTest.testValidTimezoneEdit(controller.GUIEditCalendarParserTest) (0 ms)</li><li>controller.GUIControllerTest.exportWithUnsupportedFormat(controller.GUIControllerTest) (1 ms)</li><li>controller.GUIEditEventParserTest.testEmptyProperty(controller.GUIEditEventParserTest) (1 ms)</li><li>controller.GUIControllerTest.getCurrentCalendarNameAndZone(controller.GUIControllerTest) (0 ms)</li><li>controller.GUIImportCSVCalendarParserTest.testInvalid2(controller.GUIImportCSVCalendarParserTest) (1 ms)</li><li>controller.GUIControllerTest.editCalendarInvalidProperty(controller.GUIControllerTest) (0 ms)</li><li>controller.GUICreateSingleEventParserTest.testDefaultEndWhenEmpty(controller.GUICreateSingleEventParserTest) (0 ms)</li><li>model.CSVImporterTest.importInvalidFieldCount(model.CSVImporterTest) (3 ms)</li><li>controller.GUIEditEventParserTest.testEmptyNewValue(controller.GUIEditEventParserTest) (1 ms)</li><li>controller.GUIEditEventParserTest.testMissingStartTimeForSingleMode(controller.GUIEditEventParserTest) (1 ms)</li><li>controller.TextBasedControllerTest.testInvalidArguments(controller.TextBasedControllerTest) (0 ms)</li><li>controller.GUICreateRecurringEventParserTest.testErrorWhenNoOccurrenceCountOrRecurrenceEndProvided(controller.GUICreateRecurringEventParserTest) (1 ms)</li><li>controller.GUICreateSingleEventParserTest.testValidSingleEventCreation(controller.GUICreateSingleEventParserTest) (1 ms)</li><li>controller.GUICreateRecurringEventParserTest.testErrorWithNonNumericOccurrenceCount(controller.GUICreateRecurringEventParserTest) (1 ms)</li><li>controller.GUIEditEventParserTest.testInvalidEditMode(controller.GUIEditEventParserTest) (2 ms)</li><li>controller.TextBasedControllerTest.testHeadlessNoCommandFile(controller.TextBasedControllerTest) (0 ms)</li><li>controller.ImportCalendarCommandTest.testImportFileNotFound(controller.ImportCalendarCommandTest) (4 ms)</li><li>model.CSVImporterTest.importMixedData(model.CSVImporterTest) (3 ms)</li><li>model.CSVImporterTest.importData(model.CSVImporterTest) (3 ms)</li><li>controller.GUIEditEventParserTest.testInvalidStartTimeFormat(controller.GUIEditEventParserTest) (2 ms)</li><li>controller.GUICreateRecurringEventParserTest.testValidRecurringCreationWithRecurrenceEndDate(controller.GUICreateRecurringEventParserTest) (0 ms)</li><li>controller.GUICreateRecurringEventParserTest.testValidRecurringCreationWithOccurrenceCount(controller.GUICreateRecurringEventParserTest) (0 ms)</li><li>model.CSVImporterTest.importInvalidDateFormat(model.CSVImporterTest) (6 ms)</li><li>controller.GUIEditEventParserTest.testValidEditEventSingleMode(controller.GUIEditEventParserTest) (0 ms)</li><li>controller.GUIControllerTest.createSingleEvent(controller.GUIControllerTest) (1 ms)</li><li>controller.TextBasedControllerTest.testHeadlessFileNotFound(controller.TextBasedControllerTest) (4 ms)</li><li>controller.GUIControllerTest.editCalendar(controller.GUIControllerTest) (1 ms)</li><li>controller.TextBasedControllerTest.testInteractiveMode(controller.TextBasedControllerTest) (1 ms)</li><li>controller.GUIImportCSVCalendarParserTest.testInvalid3(controller.GUIImportCSVCalendarParserTest) (2 ms)</li><li>controller.ImportCalendarCommandTest.testSuccessfulImport(controller.ImportCalendarCommandTest) (4 ms)</li><li>controller.GUIImportCSVCalendarParserTest.testValidCSVImport(controller.GUIImportCSVCalendarParserTest) (3 ms)</li><li>controller.GUIControllerTest.createRecurringEvent(controller.GUIControllerTest) (1 ms)</li><li>controller.GUIControllerTest.printEventsOn(controller.GUIControllerTest) (1 ms)</li><li>controller.GUIControllerTest.editEvent(controller.GUIControllerTest) (1 ms)</li><li>controller.TextBasedControllerTest.testHeadlessWithCommands(controller.TextBasedControllerTest) (9 ms)</li><li>controller.GUIControllerTest.importCalendar(controller.GUIControllerTest) (95 ms)</li><li>controller.CopyEventsOnCommandTest.testCopyEventsOnDate(controller.CopyEventsOnCommandTest) (0 ms)</li><li>controller.CopyEventsOnCommandTest.testCopyRecurringInstance(controller.CopyEventsOnCommandTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testGetEventsOnAndGetAllEventsWhenNoActiveCalendar(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testGetEventsOnEmptyCalendar(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testEditCalendarInvalidProperty(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testEditCalendarNameRemovesOldCalendar(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testDuplicateCalendar(model.MultiCalendarServiceTest) (0 ms)</li><li>controller.EditCalendarCommandTest.testEditNameSuccess(controller.EditCalendarCommandTest) (1 ms)</li><li>model.MultiCalendarServiceTest.testIsBusyAtWhenEmpty(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testIsBusyAtWhenNoActiveCalendar(model.MultiCalendarServiceTest) (0 ms)</li><li>controller.CopyEventCommandTest.testExecuteCopiesEvent(controller.CopyEventCommandTest) (13 ms)</li><li>controller.CopyEventsBetweenCommandTest.testExecuteNoEventsInRange(controller.CopyEventsBetweenCommandTest) (1 ms)</li><li>controller.CopyEventsBetweenCommandTest.testExecuteCopiesRange(controller.CopyEventsBetweenCommandTest) (4 ms)</li><li>controller.CopyEventsBetweenCommandTest.testCopyBetweenSameCalendar(controller.CopyEventsBetweenCommandTest) (5 ms)</li><li>model.MultiCalendarServiceTest.testUseCalendarNonexistent(model.MultiCalendarServiceTest) (0 ms)</li><li>controller.UseCalendarCommandTest.testUseInvalidCalendar(controller.UseCalendarCommandTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testCreateCalendarDuplicate(model.MultiCalendarServiceTest) (0 ms)</li><li>controller.CreateCalendarCommandTest.testDuplicateCalendarFails(controller.CreateCalendarCommandTest) (0 ms)</li><li>controller.GUICreateCalendarParserTest.parseDuplicateCreation(controller.GUICreateCalendarParserTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testGetAllEventsEmptyCalendar(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testCreateCalendarSuccess(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testNewCalendarCreation(model.MultiCalendarServiceTest) (0 ms)</li><li>model.MultiCalendarServiceTest.testCreateCalendarActuallyAddsToManager(model.MultiCalendarServiceTest) (0 ms)</li><li>controller.CreateCalendarCommandTest.testCreateValidCalendar(controller.CreateCalendarCommandTest) (0 ms)</li><li>controller.GUICreateCalendarParserTest.parseValidCreation(controller.GUICreateCalendarParserTest) (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.17.2
+
+</body>
+</html>

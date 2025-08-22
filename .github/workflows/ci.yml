@@ -1,0 +1,130 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build, test and generate coverage
+        run: mvn -B clean verify
+
+      - name: Generate test report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Maven Tests
+          path: |
+            target/surefire-reports/TEST-*.xml
+            target/surefire-reports/*.xml
+          reporter: java-junit
+          fail-on-error: false
+          fail-on-empty: false
+
+      - name: Upload JaCoCo coverage to Codecov
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          file: target/site/jacoco/jacoco.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-reports
+          path: |
+            target/site/jacoco/
+            target/pit-reports/
+            target/surefire-reports/
+            target/test-classes/
+          retention-days: 30
+
+      - name: Build JAR artifact
+        run: mvn -B clean package -DskipTests
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: calendar-jar
+          path: target/*.jar
+          retention-days: 90
+
+  quality-gate:
+    needs: test-and-coverage
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        
+    - name: Download test artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: test-reports
+        path: target/
+        
+    - name: Quality Gate - Check coverage thresholds
+      run: |
+        echo "Checking quality gates..."
+        if [ -f "target/site/jacoco/jacoco.xml" ]; then
+          echo "JaCoCo coverage report found"
+          
+          # Extract line coverage percentage from JaCoCo XML (correct format)
+          line_missed=$(grep -o '<counter type="LINE"[^>]*missed="[0-9]*"' target/site/jacoco/jacoco.xml | head -1 | grep -o 'missed="[0-9]*"' | cut -d'"' -f2)
+          line_covered=$(grep -o '<counter type="LINE"[^>]*covered="[0-9]*"' target/site/jacoco/jacoco.xml | head -1 | grep -o 'covered="[0-9]*"' | cut -d'"' -f2)
+          
+          if [ -n "$line_missed" ] && [ -n "$line_covered" ]; then
+            total_lines=$((line_missed + line_covered))
+            if [ $total_lines -gt 0 ]; then
+              coverage_percentage=$((line_covered * 100 / total_lines))
+              echo "Line coverage: $coverage_percentage% ($line_covered/$total_lines lines)"
+              
+              # Check if coverage meets threshold (85%)
+              if [ $coverage_percentage -ge 85 ]; then
+                echo "Coverage threshold met: $coverage_percentage% >= 85%"
+              else
+                echo "Coverage below threshold: $coverage_percentage% < 85%"
+                echo "::warning::Coverage is below the 85% threshold"
+                # Don't fail the build, just warn
+              fi
+            else
+              echo "No lines found to measure coverage"
+            fi
+          else
+            echo "Could not parse coverage data from JaCoCo XML"
+          fi
+        else
+          echo "Coverage report not found"
+        fi
+        
+    - name: Status check
+      run: |
+        echo "Quality gates completed!"
+        echo "Test reports and coverage artifacts uploaded"
+        echo "Ready for deployment" 

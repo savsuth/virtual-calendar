@@ -1,0 +1,61 @@
+create calendar --name Alpha --timezone America/Chicago
+create calendar --name Beta --timezone Europe/Paris
+create calendar --name Gamma --timezone Asia/Tokyo
+use calendar --name Alpha
+edit calendar --name Gamma --property timezone Europe/Berlin
+edit calendar --name Gamma --property name GammaHome
+use calendar --name GammaHome
+use calendar --name Alpha
+create event SprintKickoff from 2025-06-10T09:00 to 2025-06-10T10:00
+create event Standup from 2025-06-10T10:30 to 2025-06-10T10:45
+create event Retrospective from 2025-06-10T11:00 to 2025-06-10T12:00
+print events on 2025-06-10
+edit event start SprintKickoff from 2025-06-10T09:00 to 2025-06-10T10:00 with 2025-06-10T09:30
+edit event end SprintKickoff from 2025-06-10T09:30 to 2025-06-10T10:00 with 2025-06-10T09:50
+edit event subject SprintKickoff from 2025-06-10T09:30 to 2025-06-10T09:50 with ProjectKickoff
+print events on 2025-06-10
+create event DailyScrum from 2025-05-01T08:00 to 2025-05-01T08:15 repeats MTWRF for 4 times
+create event DailyScrum from 2025-05-02T08:00 to 2025-05-02T08:15
+print events from 2025-05-01T00:00 to 2025-05-07T23:59
+edit events subject DailyScrum from 2025-05-01T08:00 with MorningScrum
+print events from 2025-05-01T00:00 to 2025-05-07T23:59
+create event LaunchPrep from 2023-09-05T14:00 to 2023-09-05T16:00 repeats W for 3 times
+create event LaunchPrep from 2023-09-10T14:00 to 2023-09-10T16:00
+print events from 2023-09-05T00:00 to 2023-09-15T23:59
+print events on 2023-09-10
+edit events subject LaunchPrep with ProductLaunch
+print events from 2023-09-05T00:00 to 2023-09-15T23:59
+print events on 2023-09-10
+show status on 2023-09-05T14:30
+show status on 2023-09-05T10:00
+export cal ProductLaunch.csv
+create calendar --name Delta --timezone America/Los_Angeles
+create calendar --name Omega --timezone Europe/Berlin
+use calendar --name Delta
+create event TeamMeeting from 2025-07-15T15:00 to 2025-07-15T16:00 repeats F for 4 times
+create event CodeReview from 2025-07-16T11:00 to 2025-07-16T12:00
+print events from 2025-07-15T00:00 to 2025-07-21T23:59
+use calendar --name Omega
+print events from 2025-07-15T00:00 to 2025-07-21T23:59
+use calendar --name Delta
+copy events between 2025-07-15 and 2025-07-17 --target Omega to 2025-07-15
+use calendar --name Omega
+print events from 2025-07-15T00:00 to 2025-07-21T23:59
+use calendar --name Delta
+copy events on 2025-07-15 --target Omega to 2025-07-15
+use calendar --name Omega
+print events on 2025-07-15
+use calendar --name Delta
+copy event TeamMeeting on 2025-07-15T15:00 --target Omega to 2025-07-15T15:00
+use calendar --name Omega
+print events on 2025-07-15
+use calendar --name Delta
+create event DemoReview from 2025-08-25T09:00 to 2025-08-25T10:30
+print events on 2025-08-25
+copy event DemoReview on 2025-08-25T09:00 --target Omega to 2025-08-25T09:00
+use calendar --name Omega
+print events on 2025-08-25
+export cal Omega.csv
+use calendar --name Delta
+export cal Delta.csv
+exit
