@@ -239,12 +239,6 @@ mvn verify                                       # Run all tests with quality ga
 - **UML Diagrams**: Complete system architecture in `/res/UML Diagram.pdf`
 - **Test Reports**: Mutation testing reports in `/res/pit-reports/`
 
-## Project Links
-
-- **GitHub Repository**: [https://github.com/samyak0510/Calendar/](https://github.com/samyak0510/Calendar/)
-- **CI/CD Pipeline**: [GitHub Actions](https://github.com/samyak0510/Calendar/actions)
-- **Coverage Reports**: [Codecov Dashboard](https://codecov.io/gh/samyak0510/Calendar)
-- **Release Downloads**: [GitHub Releases](https://github.com/samyak0510/Calendar/releases)
 
 ## Acknowledgments
 
