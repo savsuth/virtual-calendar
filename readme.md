@@ -145,7 +145,7 @@ For development and testing purposes:
 - **Smart Conflict Resolution**: Improved conflict detection across calendar boundaries
 
 ### Recurring Event Patterns
-- **Weekday Selection**: Choose specific days (Mon, Tue, Wed, etc.)
+- **Weekday Selection**: Choose the specific days (Mon, Tue, Wed, etc.)
 - **Count-based**: Repeat for a specified number of occurrences
 - **Date-based**: Repeat until a specific end date
 - **Individual Editing**: Modify single instances or entire series
