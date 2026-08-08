@@ -245,4 +245,4 @@ This project demonstrates advanced software engineering principles including SOL
 
 **Academic Context**: This was developed as a comprehensive project for the Program Design Paradigm (PDP) course at Northeastern University under Prof. Amit Shesh, evolving through four iterative assignments to demonstrate incremental software development, design pattern implementation, and professional software engineering practices.
 
-Thank you for reviewing our Virtual Calendar Application!
+Thank you for reviewing my Virtual Calendar Application!
