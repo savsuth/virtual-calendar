@@ -11,7 +11,6 @@
 
 This project implements a comprehensive virtual calendar application that mimics the core features of popular calendar software like Google Calendar and iCalendar. Built using Java with Maven, the application follows MVC (Model-View-Controller) architecture and SOLID design principles to ensure maintainability, scalability, and extensibility.
 
-**Sprint 4 Evolution:** Building upon previous iterations, Assignment 6 delivers an intuitive Java Swing GUI with month view, and day dialog. A unified controller now powers CLI, headless scripts, and GUI modes from a single JAR. Additional features include CSV import, and enhanced mutation-tested codebase.
 
 ## Visual Demonstrations
 
